@@ -276,19 +276,21 @@ class GIFDownloaderApp:
                 bottom_text_position = ((frame.width - draw.textlength(bottom_text, font=font)) // 2, frame.height / 1.25)
 
                 # Draw black border around top text
-                draw.text((top_text_position[0] - 1, top_text_position[1] - 1), top_text, font=font, fill="black")
-                draw.text((top_text_position[0] + 1, top_text_position[1] - 1), top_text, font=font, fill="black")
-                draw.text((top_text_position[0] - 1, top_text_position[1] + 1), top_text, font=font, fill="black")
-                draw.text((top_text_position[0] + 1, top_text_position[1] + 1), top_text, font=font, fill="black")
+                border_width = 2
+                border_fill = "black"
+                for dx in range(-border_width, border_width + 1):
+                    for dy in range(-border_width, border_width + 1):
+                        if abs(dx) + abs(dy) != 0:  # Exclude the center position
+                            draw.text((top_text_position[0] + dx, top_text_position[1] + dy), top_text, font=font, fill=border_fill)
 
                 # Draw top text
                 draw.text(top_text_position, top_text, font=font, fill="white")
 
                 # Draw black border around bottom text
-                draw.text((bottom_text_position[0] - 1, bottom_text_position[1] - 1), bottom_text, font=font, fill="black")
-                draw.text((bottom_text_position[0] + 1, bottom_text_position[1] - 1), bottom_text, font=font, fill="black")
-                draw.text((bottom_text_position[0] - 1, bottom_text_position[1] + 1), bottom_text, font=font, fill="black")
-                draw.text((bottom_text_position[0] + 1, bottom_text_position[1] + 1), bottom_text, font=font, fill="black")
+                for dx in range(-border_width, border_width + 1):
+                    for dy in range(-border_width, border_width + 1):
+                        if abs(dx) + abs(dy) != 0:  # Exclude the center position
+                            draw.text((bottom_text_position[0] + dx, bottom_text_position[1] + dy), bottom_text, font=font, fill=border_fill)
 
                 # Draw bottom text
                 draw.text(bottom_text_position, bottom_text, font=font, fill="white")
