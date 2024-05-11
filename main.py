@@ -3,6 +3,7 @@ from tkinter import messagebox, filedialog, simpledialog
 import requests
 import os
 import json
+import pyperclip
 from PIL import Image, ImageDraw, ImageFont, ImageSequence, ImageTk
 from io import BytesIO
 
@@ -239,6 +240,10 @@ class GIFDownloaderApp:
                 if output:
                     with open(filename, 'wb') as f:
                         f.write(output.read())
+                    path = filename
+                    command = f"powershell Set-Clipboard -LiteralPath {path}"
+                    os.system(command)
+            
         except Exception as e:
             print(f"Failed to download GIF: {e}")
             messagebox.showerror("Error", f"Failed to download GIF: {e}")
