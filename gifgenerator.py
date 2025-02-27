@@ -3,9 +3,10 @@ from tkinter import messagebox, filedialog, simpledialog
 import requests
 import os
 import json
-import pyperclip
+# import pyperclip
 from PIL import Image, ImageDraw, ImageFont, ImageSequence, ImageTk
 from io import BytesIO
+import platform
 
 class GIFDownloaderApp:
     def __init__(self, master):
@@ -269,7 +270,10 @@ class GIFDownloaderApp:
                 font_size = max(int(frame.height / 8), 12)  # Adjust the divisor as needed
 
                 # Load the font
-                font = ImageFont.truetype("arial.ttf", font_size)
+                if platform.system() == "Linux":
+                    font = ImageFont.truetype("/usr/share/fonts/TTF/COMIC.ttf", font_size)
+                elif platform.system() == "Windows":
+                    font = ImageFont.truetype("arial.ttf", font_size)
 
                 # Define text positions
                 top_text_position = ((frame.width - draw.textlength(top_text, font=font)) // 2, 20)
