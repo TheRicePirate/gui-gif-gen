@@ -271,7 +271,7 @@ class GIFDownloaderApp:
 
                 # Load the font
                 if platform.system() == "Linux":
-                    font = ImageFont.truetype("/usr/share/fonts/TTF/COMIC.ttf", font_size)
+                    font = ImageFont.truetype("/usr/share/fonts/noto/NotoSans-Regular.ttf", font_size)
                 elif platform.system() == "Windows":
                     font = ImageFont.truetype("arial.ttf", font_size)
 
